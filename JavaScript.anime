@@ -1,0 +1,28 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const character = document.getElementById("character");
+
+    // Move the character left and right
+    let moveDistance = 10;
+    document.addEventListener("keydown", (event) => {
+        const left = parseInt(window.getComputedStyle(character).left);
+
+        if (event.key === "ArrowLeft") {
+            character.style.left = `${left - moveDistance}px`;
+        } else if (event.key === "ArrowRight") {
+            character.style.left = `${left + moveDistance}px`;
+        }
+    });
+
+    // Simple animation loop
+    let characterFrame = 0;
+    const characterFrames = [
+        'character1.png', // Placeholder image filenames for animation
+        'character2.png',
+        'character3.png'
+    ];
+
+    setInterval(() => {
+        character.src = characterFrames[characterFrame];
+        characterFrame = (characterFrame + 1) % characterFrames.length;
+    }, 200);
+});
